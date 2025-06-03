@@ -1,0 +1,155 @@
+package com.caleb.library.entities;
+
+import jakarta.persistence.*;
+
+import java.util.*;
+
+@Entity
+@Table(name = "tb_book")
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String title;
+    private String ISBN;
+    private String CDU;
+    private String language;
+    private String caption;
+    private String matter;
+    private String countryPublished;
+    private int yearOfEdition;
+
+    @OneToMany
+    private List<Category> categories = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "tb_book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
+    @OneToMany(mappedBy = "id.book")
+    private Set<Loan> loans = new HashSet<>();
+
+    public Book(Integer id, String title, String ISBN, String CDU, String language, String caption, String matter, String countryPublished, int yearOfEdition, Publisher publisher) {
+        this.id = id;
+        this.title = title;
+        this.ISBN = ISBN;
+        this.CDU = CDU;
+        this.language = language;
+        this.caption = caption;
+        this.matter = matter;
+        this.countryPublished = countryPublished;
+        this.yearOfEdition = yearOfEdition;
+        this.publisher = publisher;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public String getCDU() {
+        return CDU;
+    }
+
+    public void setCDU(String CDU) {
+        this.CDU = CDU;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public String getMatter() {
+        return matter;
+    }
+
+    public void setMatter(String matter) {
+        this.matter = matter;
+    }
+
+    public String getCountryPublished() {
+        return countryPublished;
+    }
+
+    public void setCountryPublished(String countryPublished) {
+        this.countryPublished = countryPublished;
+    }
+
+    public int getYearOfEdition() {
+        return yearOfEdition;
+    }
+
+    public void setYearOfEdition(int yearOfEdition) {
+        this.yearOfEdition = yearOfEdition;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+}
