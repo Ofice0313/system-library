@@ -2,6 +2,7 @@ package com.caleb.library.entities;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,12 +17,12 @@ public class Author {
     private Integer id;
     private String name;
     private String nationality;
-    private LocalDate dateOfBirth;
+    private Instant dateOfBirth;
 
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
-    public Author(Integer id, String name, String nationality, LocalDate dateOfBirth) {
+    public Author(Integer id, String name, String nationality, Instant dateOfBirth) {
         this.id = id;
         this.name = name;
         this.nationality = nationality;
@@ -52,11 +53,11 @@ public class Author {
         this.nationality = nationality;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Instant getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(Instant dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

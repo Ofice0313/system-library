@@ -5,6 +5,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -15,15 +16,15 @@ public class Loan {
     @EmbeddedId
     private LoanPK id = new LoanPK();
 
-    private LocalDate dateLoan;
-    private LocalDate returnDate;
-    private LocalDate dateReturned;
-    private LocalDate renew;
+    private Instant dateLoan;
+    private Instant returnDate;
+    private Instant dateReturned;
+    private Instant renew;
     private String observations;
 
     public Loan(){}
 
-    public Loan(Person person, Book book, LocalDate dateLoan, LocalDate returnDate, LocalDate dateReturned, LocalDate renew, String observations) {
+    public Loan(Person person, Book book, Instant dateLoan, Instant returnDate, Instant dateReturned, Instant renew, String observations) {
         id.setPerson(person);
         id.setBook(book);
         this.dateLoan = dateLoan;
@@ -49,35 +50,35 @@ public class Loan {
         id.setBook(book);
     }
 
-    public LocalDate getDateLoan() {
+    public Instant getDateLoan() {
         return dateLoan;
     }
 
-    public void setDateLoan(LocalDate dateLoan) {
+    public void setDateLoan(Instant dateLoan) {
         this.dateLoan = dateLoan;
     }
 
-    public LocalDate getReturnDate() {
+    public Instant getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDate returnDate) {
+    public void setReturnDate(Instant returnDate) {
         this.returnDate = returnDate;
     }
 
-    public LocalDate getDateReturned() {
+    public Instant getDateReturned() {
         return dateReturned;
     }
 
-    public void setDateReturned(LocalDate dateReturned) {
+    public void setDateReturned(Instant dateReturned) {
         this.dateReturned = dateReturned;
     }
 
-    public LocalDate getRenew() {
+    public Instant getRenew() {
         return renew;
     }
 
-    public void setRenew(LocalDate renew) {
+    public void setRenew(Instant renew) {
         this.renew = renew;
     }
 
