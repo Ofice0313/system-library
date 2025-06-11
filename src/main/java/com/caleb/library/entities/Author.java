@@ -17,6 +17,7 @@ public class Author {
     private Integer id;
     private String name;
     private String nationality;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dateOfBirth;
 
     @ManyToMany(mappedBy = "authors")

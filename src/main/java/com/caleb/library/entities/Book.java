@@ -14,7 +14,7 @@ public class Book {
     private String title;
     private String ISBN;
     private String CDU;
-    private String language;
+    private String language_;
     private String caption;
     private String matter;
     private String countryPublished;
@@ -36,12 +36,12 @@ public class Book {
     @OneToMany(mappedBy = "id.book")
     private Set<Loan> loans = new HashSet<>();
 
-    public Book(Integer id, String title, String ISBN, String CDU, String language, String caption, String matter, String countryPublished, int yearOfEdition, Publisher publisher) {
+    public Book(Integer id, String title, String ISBN, String CDU, String language_, String caption, String matter, String countryPublished, int yearOfEdition, Publisher publisher) {
         this.id = id;
         this.title = title;
         this.ISBN = ISBN;
         this.CDU = CDU;
-        this.language = language;
+        this.language_ = language_;
         this.caption = caption;
         this.matter = matter;
         this.countryPublished = countryPublished;
@@ -82,11 +82,11 @@ public class Book {
     }
 
     public String getLanguage() {
-        return language;
+        return language_;
     }
 
     public void setLanguage(String language) {
-        this.language = language;
+        this.language_ = language;
     }
 
     public String getCaption() {

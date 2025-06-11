@@ -1,6 +1,7 @@
 package com.caleb.library.entities;
 
 import com.caleb.library.entities.pk.LoanPK;
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -15,10 +16,13 @@ public class Loan {
 
     @EmbeddedId
     private LoanPK id = new LoanPK();
-
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dateLoan;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant returnDate;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dateReturned;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant renew;
     private String observations;
 

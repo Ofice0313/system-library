@@ -15,6 +15,7 @@ public class Category {
     private TypeCategory typeCategory;
 
     @OneToOne
+    @JoinColumn(name = "book_id")
     private Book book;
 
     public Category(){
