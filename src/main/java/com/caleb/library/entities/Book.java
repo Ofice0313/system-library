@@ -36,6 +36,10 @@ public class Book {
     @OneToMany(mappedBy = "id.book")
     private Set<Loan> loans = new HashSet<>();
 
+    public Book(){
+
+    }
+
     public Book(Integer id, String title, String ISBN, String CDU, String language_, String caption, String matter, String countryPublished, int yearOfEdition, Publisher publisher) {
         this.id = id;
         this.title = title;
