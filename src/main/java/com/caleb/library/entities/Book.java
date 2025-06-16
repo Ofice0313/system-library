@@ -12,15 +12,15 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    private String ISBN;
-    private String CDU;
+    private String isbn;
+    private String cdu;
     private String language_;
     private String caption;
     private String matter;
     private String countryPublished;
     private int yearOfEdition;
 
-    @OneToMany
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Category> categories = new ArrayList<>();
 
     @ManyToMany
@@ -40,17 +40,16 @@ public class Book {
 
     }
 
-    public Book(Integer id, String title, String ISBN, String CDU, String language_, String caption, String matter, String countryPublished, int yearOfEdition, Publisher publisher) {
+    public Book(Integer id, String title, String isbn, String cdu, String language_, String caption, String matter, String countryPublished, int yearOfEdition) {
         this.id = id;
         this.title = title;
-        this.ISBN = ISBN;
-        this.CDU = CDU;
+        this.isbn = isbn;
+        this.cdu = cdu;
         this.language_ = language_;
         this.caption = caption;
         this.matter = matter;
         this.countryPublished = countryPublished;
         this.yearOfEdition = yearOfEdition;
-        this.publisher = publisher;
     }
 
     public Integer getId() {
@@ -69,20 +68,20 @@ public class Book {
         this.title = title;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
-    public String getCDU() {
-        return CDU;
+    public String getCdu() {
+        return cdu;
     }
 
-    public void setCDU(String CDU) {
-        this.CDU = CDU;
+    public void setCdu(String cdu) {
+        this.cdu = cdu;
     }
 
     public String getLanguage() {

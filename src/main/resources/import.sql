@@ -3,10 +3,10 @@ INSERT INTO tb_publisher(name, contact, site) VALUES ('Editora Saraiva', '+55113
 INSERT INTO tb_publisher(name, contact, site) VALUES ('Pearson Education', '+441632960960', 'www.pearson.com');
 INSERT INTO tb_publisher(name, contact, site) VALUES ('Campus Elsevier', '+551133224455', 'www.elsevier.com.br');
 
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, publisher_id) VALUES ('Programming', '2134587564', '11111', 'English', 'wwww', 'OOP', 'EUA', '2016', 1);
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, publisher_id) VALUES ('Java para Iniciantes', '9788534605080', '005.13', 'Portuguese', 'Introdução ao Java', 'Programação', 'Brasil', '2020', 1);
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, publisher_id) VALUES ('Estruturas de Dados', '9780132576277', '005.73', 'English', 'Fundamentos de estruturas de dados', 'Algoritmos', 'EUA', '2018', 2);
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, publisher_id) VALUES ('Redes de Computadores', '9788582602961', '004.6', 'Portuguese', 'Conceitos de redes', 'Redes', 'Brasil', '2019', 3);
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Programming', '2134587564', '11111', 'English', 'wwww', 'OOP', 'EUA', '2016');
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Java para Iniciantes', '9788534605080', '005.13', 'Portuguese', 'Introdução ao Java', 'Programação', 'Brasil', '2020');
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Estruturas de Dados', '9780132576277', '005.73', 'English', 'Fundamentos de estruturas de dados', 'Algoritmos', 'EUA', '2018');
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Redes de Computadores', '9788582602961', '004.6', 'Portuguese', 'Conceitos de redes', 'Redes', 'Brasil', '2019');
 
 INSERT INTO tb_author(name, nationality, date_of_birth) VALUES ('Paul Deitel', 'American', TIMESTAMP WITH TIME ZONE '2025-06-10T00:55:53Z');
 INSERT INTO tb_author(name, nationality, date_of_birth) VALUES ('Harvey Deitel', 'American', TIMESTAMP WITH TIME ZONE '1960-04-01T00:00:00Z');
