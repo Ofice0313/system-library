@@ -14,6 +14,7 @@ public class BookDTO {
     private String countryPublished;
     private int yearOfEdition;
 
+
     public BookDTO(Integer id, String title, String isbn, String cdu, String language, String caption, String matter, String countryPublished, int yearOfEdition) {
         this.id = id;
         this.title = title;
