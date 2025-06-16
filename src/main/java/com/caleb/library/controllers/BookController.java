@@ -1,6 +1,7 @@
 package com.caleb.library.controllers;
 
 import com.caleb.library.dto.BookDTO;
+import com.caleb.library.dto.BookPublisherDTO;
 import com.caleb.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,8 +32,15 @@ public class BookController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping
+    //@PostMapping
     public ResponseEntity<BookDTO> insert(@Validated @RequestBody BookDTO dto){
+        dto = bookService.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PostMapping
+    public ResponseEntity<BookPublisherDTO> insert(@RequestBody BookPublisherDTO dto){
         dto = bookService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);

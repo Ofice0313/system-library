@@ -1,8 +1,11 @@
 package com.caleb.library.services;
 
 import com.caleb.library.dto.BookDTO;
+import com.caleb.library.dto.BookPublisherDTO;
 import com.caleb.library.entities.Book;
+import com.caleb.library.entities.Publisher;
 import com.caleb.library.repositories.BookRepository;
+import com.caleb.library.repositories.PublisherRepository;
 import com.caleb.library.services.exceptions.DatabaseException;
 import com.caleb.library.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,6 +22,9 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private PublisherRepository publisherRepository;
 
     @Transactional(readOnly = true)
     public BookDTO findById(Integer id){
@@ -38,6 +44,27 @@ public class BookService {
         copyDtoToEntity(dto, entity);
         entity = bookRepository.save(entity);
         return new BookDTO(entity);
+    }
+
+    @Transactional
+    public BookPublisherDTO insert(BookPublisherDTO dto){
+
+        Book entity = new Book();
+        entity.setTitle(dto.getTitle());
+        entity.setCountryPublished(dto.getCountryPublished());
+        entity.setLanguage(dto.getLanguage());
+        entity.setYearOfEdition(dto.getYearOfEdition());
+        entity.setCdu(dto.getCdu());
+        entity.setMatter(dto.getMatter());
+        entity.setIsbn(dto.getIsbn());
+        entity.setCaption(dto.getCaption());
+
+        Publisher publisher = publisherRepository.getReferenceById(dto.getPublisher().getId());
+
+        entity.setPublisher(publisher);
+
+        entity = bookRepository.save(entity);
+        return new BookPublisherDTO(entity);
     }
 
     @Transactional
