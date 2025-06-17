@@ -20,7 +20,7 @@ public class Book {
     private String countryPublished;
     private int yearOfEdition;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book")
     private List<Category> categories = new ArrayList<>();
 
     @ManyToMany

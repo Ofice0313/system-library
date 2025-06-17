@@ -1,14 +1,13 @@
 package com.caleb.library.services;
 
-import com.caleb.library.dto.AuthorDTO;
-import com.caleb.library.dto.BookDTO;
-import com.caleb.library.dto.BookPublisherAuthorDTO;
-import com.caleb.library.dto.BookPublisherDTO;
+import com.caleb.library.dto.*;
 import com.caleb.library.entities.Author;
 import com.caleb.library.entities.Book;
+import com.caleb.library.entities.Category;
 import com.caleb.library.entities.Publisher;
 import com.caleb.library.repositories.AuthorRepository;
 import com.caleb.library.repositories.BookRepository;
+import com.caleb.library.repositories.CategoryRepository;
 import com.caleb.library.repositories.PublisherRepository;
 import com.caleb.library.services.exceptions.DatabaseException;
 import com.caleb.library.services.exceptions.ResourceNotFoundException;
@@ -32,6 +31,9 @@ public class BookService {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
     public BookDTO findById(Integer id){
@@ -100,11 +102,52 @@ public class BookService {
     }
 
     @Transactional
+    public BookPublisherAuthorCategoryDTO insert(BookPublisherAuthorCategoryDTO dto){
+
+        Book entity = new Book();
+        entity.setTitle(dto.getTitle());
+        entity.setCountryPublished(dto.getCountryPublished());
+        entity.setLanguage(dto.getLanguage());
+        entity.setYearOfEdition(dto.getYearOfEdition());
+        entity.setCdu(dto.getCdu());
+        entity.setMatter(dto.getMatter());
+        entity.setIsbn(dto.getIsbn());
+        entity.setCaption(dto.getCaption());
+
+        Publisher publisher = publisherRepository.getReferenceById(dto.getPublisher().getId());
+        entity.setPublisher(publisher);
+
+        for(AuthorDTO authorDTO: dto.getAuthors()){
+            Author author = authorRepository.getReferenceById(authorDTO.getId());
+            entity.getAuthors().add(author);
+        }
+
+        for (CategoryDTO categoryDTO: dto.getCategories()){
+            Category category = categoryRepository.getReferenceById(categoryDTO.getId());
+            entity.getCategories().add(category);
+        }
+
+        entity = bookRepository.save(entity);
+        return new BookPublisherAuthorCategoryDTO(entity);
+    }
+
+    @Transactional
     public BookDTO update(Integer id, BookDTO dto){
         try {
             Book entity = bookRepository.getReferenceById(id);
             copyDtoToEntity(dto, entity);
             return new BookDTO(entity);
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Resource not found!");
+        }
+    }
+
+    @Transactional
+    public BookPublisherDTO update(Integer id, BookPublisherDTO dto){
+        try {
+            Book entity = bookRepository.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            return new BookPublisherDTO(entity);
         }catch (EntityNotFoundException e){
             throw new ResourceNotFoundException("Resource not found!");
         }
@@ -131,5 +174,32 @@ public class BookService {
         entity.setLanguage(dto.getLanguage());
         entity.setMatter(dto.getMatter());
         entity.setYearOfEdition(dto.getYearOfEdition());
+    }
+
+    private void copyDtoToEntity(BookPublisherDTO dto, Book entity) {
+        entity.setTitle(dto.getTitle());
+        entity.setCaption(dto.getCaption());
+        entity.setCdu(dto.getCdu());
+        entity.setIsbn(dto.getIsbn());
+        entity.setCountryPublished(dto.getCountryPublished());
+        entity.setLanguage(dto.getLanguage());
+        entity.setMatter(dto.getMatter());
+        entity.setYearOfEdition(dto.getYearOfEdition());
+
+        if(dto.getPublisher() != null && dto.getPublisher().getId() != null){
+            try {
+                Publisher publisher = publisherRepository.getReferenceById(dto.getPublisher().getId());
+
+                publisher.setName(dto.getPublisher().getName());
+                publisher.setContact(dto.getPublisher().getContact());
+                publisher.setSite(dto.getPublisher().getSite());
+
+                entity.setPublisher(publisher);
+            }catch (EntityNotFoundException e){
+                throw new ResourceNotFoundException("Resource not found with ID: " + dto.getPublisher().getId());
+            }
+        }else {
+            entity.setPublisher(null);
+        }
     }
 }

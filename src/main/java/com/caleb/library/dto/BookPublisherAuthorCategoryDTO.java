@@ -2,11 +2,12 @@ package com.caleb.library.dto;
 
 import com.caleb.library.entities.Author;
 import com.caleb.library.entities.Book;
+import com.caleb.library.entities.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookPublisherAuthorDTO {
+public class BookPublisherAuthorCategoryDTO {
 
     private Integer id;
     private String title;
@@ -20,11 +21,13 @@ public class BookPublisherAuthorDTO {
 
     private PublisherDTO publisher;
 
+    private List<CategoryDTO> categories = new ArrayList<>();
+
     private List<AuthorDTO> authors = new ArrayList<>();
 
-    public BookPublisherAuthorDTO(){}
+    public BookPublisherAuthorCategoryDTO(){}
 
-    public BookPublisherAuthorDTO(Integer id, String title, String isbn, String cdu, String language, String caption, String matter, String countryPublished, int yearOfEdition, PublisherDTO publisher) {
+    public BookPublisherAuthorCategoryDTO(Integer id, String title, String isbn, String cdu, String language, String caption, String matter, String countryPublished, int yearOfEdition, PublisherDTO publisher) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
@@ -37,7 +40,7 @@ public class BookPublisherAuthorDTO {
         this.publisher = publisher;
     }
 
-    public BookPublisherAuthorDTO(Book entity) {
+    public BookPublisherAuthorCategoryDTO(Book entity) {
         id = entity.getId();
         title = entity.getTitle();
         isbn = entity.getIsbn();
@@ -48,6 +51,10 @@ public class BookPublisherAuthorDTO {
         countryPublished = entity.getCountryPublished();
         yearOfEdition = entity.getYearOfEdition();
         publisher = new PublisherDTO(entity.getPublisher());
+
+        for (Category category: entity.getCategories()){
+            categories.add(new CategoryDTO(category));
+        }
 
         for (Author author: entity.getAuthors()){
             authors.add(new AuthorDTO(author));
@@ -93,6 +100,10 @@ public class BookPublisherAuthorDTO {
 
     public PublisherDTO getPublisher() {
         return publisher;
+    }
+
+    public List<CategoryDTO> getCategories() {
+        return categories;
     }
 
     public List<AuthorDTO> getAuthors() {

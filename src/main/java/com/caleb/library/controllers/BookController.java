@@ -1,6 +1,7 @@
 package com.caleb.library.controllers;
 
 import com.caleb.library.dto.BookDTO;
+import com.caleb.library.dto.BookPublisherAuthorCategoryDTO;
 import com.caleb.library.dto.BookPublisherAuthorDTO;
 import com.caleb.library.dto.BookPublisherDTO;
 import com.caleb.library.services.BookService;
@@ -47,15 +48,28 @@ public class BookController {
         return ResponseEntity.created(uri).body(dto);
     }
 
-    @PostMapping
+    //@PostMapping
     public ResponseEntity<BookPublisherAuthorDTO> insert(@RequestBody BookPublisherAuthorDTO dto){
         dto = bookService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 
-    @PutMapping(value = "/{id}")
+    @PostMapping
+    public ResponseEntity<BookPublisherAuthorCategoryDTO> insert(@RequestBody BookPublisherAuthorCategoryDTO dto){
+        dto = bookService.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
+
+    //@PutMapping(value = "/{id}")
     public ResponseEntity<BookDTO> update(@PathVariable Integer id, @Validated @RequestBody BookDTO dto){
+        dto = bookService.update(id, dto);
+        return ResponseEntity.ok(dto);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<BookPublisherDTO> update(@PathVariable Integer id, @Validated @RequestBody BookPublisherDTO dto){
         dto = bookService.update(id, dto);
         return ResponseEntity.ok(dto);
     }
