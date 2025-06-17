@@ -68,8 +68,14 @@ public class BookController {
         return ResponseEntity.ok(dto);
     }
 
-    @PutMapping(value = "/{id}")
+    //@PutMapping(value = "/{id}")
     public ResponseEntity<BookPublisherDTO> update(@PathVariable Integer id, @Validated @RequestBody BookPublisherDTO dto){
+        dto = bookService.update(id, dto);
+        return ResponseEntity.ok(dto);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<BookPublisherAuthorDTO> update(@PathVariable Integer id, @Validated @RequestBody BookPublisherAuthorDTO dto){
         dto = bookService.update(id, dto);
         return ResponseEntity.ok(dto);
     }

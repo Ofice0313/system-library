@@ -153,6 +153,17 @@ public class BookService {
         }
     }
 
+    @Transactional
+    public BookPublisherAuthorDTO update(Integer id, BookPublisherAuthorDTO dto){
+        try {
+            Book entity = bookRepository.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            return new BookPublisherAuthorDTO(entity);
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Resource not found!");
+        }
+    }
+
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Integer id){
         if(!bookRepository.existsById(id)){
@@ -200,6 +211,42 @@ public class BookService {
             }
         }else {
             entity.setPublisher(null);
+        }
+    }
+
+    private void copyDtoToEntity(BookPublisherAuthorDTO dto, Book entity) {
+        entity.setTitle(dto.getTitle());
+        entity.setCaption(dto.getCaption());
+        entity.setCdu(dto.getCdu());
+        entity.setIsbn(dto.getIsbn());
+        entity.setCountryPublished(dto.getCountryPublished());
+        entity.setLanguage(dto.getLanguage());
+        entity.setMatter(dto.getMatter());
+        entity.setYearOfEdition(dto.getYearOfEdition());
+
+        if(dto.getPublisher() != null && dto.getPublisher().getId() != null){
+            try {
+                Publisher publisher = publisherRepository.getReferenceById(dto.getPublisher().getId());
+
+                publisher.setName(dto.getPublisher().getName());
+                publisher.setContact(dto.getPublisher().getContact());
+                publisher.setSite(dto.getPublisher().getSite());
+
+                entity.setPublisher(publisher);
+            }catch (EntityNotFoundException e){
+                throw new ResourceNotFoundException("Resource not found with ID: " + dto.getPublisher().getId());
+            }
+        }else {
+            entity.setPublisher(null);
+        }
+
+        for(AuthorDTO authorDTO: dto.getAuthors()){
+            try {
+                Author author = authorRepository.getReferenceById(authorDTO.getId());
+                entity.getAuthors().add(author);
+            }catch (EntityNotFoundException e){
+                throw new ResourceNotFoundException("Entity not found with ID: " + authorDTO.getId());
+            }
         }
     }
 }
