@@ -18,6 +18,8 @@ public class Course {
     @OneToMany(mappedBy = "id.course")
     private Set<Student> students = new HashSet<>();
 
+    public Course(){}
+
     public Course(Integer id, String name) {
         this.id = id;
         this.name = name;
