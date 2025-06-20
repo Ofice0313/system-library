@@ -28,6 +28,7 @@ INSERT INTO tb_person(name, phone, email) VALUES ('Ednilson Dava', '864362423', 
 INSERT INTO tb_person(name, phone, email) VALUES ('Ana Paula Silva', '8798856241', 'ana.silva@example.com');
 INSERT INTO tb_person(name, phone, email) VALUES ('Carlos Domingos', '8732154796', 'carlos.domingos@example.com');
 INSERT INTO tb_person(name, phone, email) VALUES ('Luísa Nhantumbo', '8712547890', 'luisa.nhantumbo@example.com');
+INSERT INTO tb_person(name, phone, email) VALUES ('Renato Muiambo', '8712547890', 'renatomuiambo@example.com');
 
 INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2025-06-10T08:10:53Z', TIMESTAMP WITH TIME ZONE '2025-06-17T10:30:00Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:00:53Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:15:53Z', 'Inadiplete');
 INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations) VALUES (2, 2, TIMESTAMP WITH TIME ZONE '2025-06-05T09:15:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T09:45:00Z', NULL, 'Entregue a tempo');
@@ -39,9 +40,10 @@ INSERT INTO tb_department(name) VALUES ('Administração');
 INSERT INTO tb_department(name) VALUES ('Biblioteca');
 INSERT INTO tb_department(name) VALUES ('RH');
 
-INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (1, 2, 'TICs', 2);
+INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (1, 2, 'TICs', 1);
 INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (2, 3, 'Bibliotecária', 1);
 INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (3, 1, 'Recursos Humanos', 2);
+INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (1, 6, 'TICs', 1);
 
 INSERT INTO tb_course(name) VALUES ('Programação');
 INSERT INTO tb_course(name) VALUES ('Engenharia de Software');

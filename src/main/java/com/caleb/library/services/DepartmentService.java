@@ -27,6 +27,12 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = true)
+    public DepartmentWithEmployeesDTO findByIdWithEmployees(Integer id){
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found!"));
+        return new DepartmentWithEmployeesDTO(department);
+    }
+
+    @Transactional(readOnly = true)
     public Page<DepartmentDTO> findAll(Pageable pageable){
         Page<Department> result = departmentRepository.findAll(pageable);
         return result.map(x -> new DepartmentDTO(x));

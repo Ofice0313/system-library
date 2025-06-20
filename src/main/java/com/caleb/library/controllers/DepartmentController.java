@@ -1,6 +1,7 @@
 package com.caleb.library.controllers;
 
 import com.caleb.library.dto.DepartmentDTO;
+import com.caleb.library.dto.DepartmentWithEmployeesDTO;
 import com.caleb.library.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,12 @@ public class DepartmentController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<DepartmentDTO> findById(@PathVariable Integer id){
         DepartmentDTO dto = departmentService.findById(id);
+        return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping(value = "/{id}/employees")
+    public ResponseEntity<DepartmentWithEmployeesDTO> findDepartmentWithEmployees(@PathVariable Integer id){
+        DepartmentWithEmployeesDTO dto = departmentService.findByIdWithEmployees(id);
         return ResponseEntity.ok(dto);
     }
 
