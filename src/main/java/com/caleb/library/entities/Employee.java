@@ -2,6 +2,7 @@ package com.caleb.library.entities;
 
 import com.caleb.library.entities.enuns.TypeEmployee;
 import com.caleb.library.entities.pk.EmployeePK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -35,6 +36,7 @@ public class Employee {
         id.setDepartment(department);
     }
 
+    @JsonIgnore
     public Person getPerson(){
         return id.getPerson();
     }

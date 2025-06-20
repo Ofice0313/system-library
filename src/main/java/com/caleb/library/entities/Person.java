@@ -17,8 +17,8 @@ public class Person {
     private String phone;
     private String email;
 
-    @OneToOne(mappedBy = "id.person")
-    private Employee employee;
+    @OneToMany(mappedBy = "id.person")
+    private Set<Employee> employees = new HashSet<>();
 
     @OneToMany(mappedBy = "id.person")
     private Set<Loan> loans = new HashSet<>();
@@ -71,8 +71,8 @@ public class Person {
         return loans;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Set<Employee> getEmployees() {
+        return employees;
     }
 
     public Student getStudents() {

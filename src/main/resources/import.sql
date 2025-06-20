@@ -41,7 +41,7 @@ INSERT INTO tb_department(name) VALUES ('RH');
 
 INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (1, 2, 'TICs', 2);
 INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (2, 3, 'Bibliotecária', 1);
-INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (3, 2, 'Recursos Humanos', 2);
+INSERT INTO tb_employee(department_id, person_id, name, type_employee) VALUES (3, 1, 'Recursos Humanos', 2);
 
 INSERT INTO tb_course(name) VALUES ('Programação');
 INSERT INTO tb_course(name) VALUES ('Engenharia de Software');
