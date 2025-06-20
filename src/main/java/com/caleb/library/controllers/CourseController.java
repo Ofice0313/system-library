@@ -1,6 +1,7 @@
 package com.caleb.library.controllers;
 
 import com.caleb.library.dto.CourseDTO;
+import com.caleb.library.dto.CourseWithStudentsDTO;
 import com.caleb.library.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,12 @@ public class CourseController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<CourseDTO> findById(@PathVariable Integer id){
         CourseDTO dto = courseService.findById(id);
+        return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping(value = "/{id}/students")
+    public ResponseEntity<CourseWithStudentsDTO> findCourseWithStudents(@PathVariable Integer id){
+        CourseWithStudentsDTO dto = courseService.findByIdWithStudents(id);
         return ResponseEntity.ok(dto);
     }
 

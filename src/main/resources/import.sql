@@ -51,6 +51,6 @@ INSERT INTO tb_course(name) VALUES ('Redes de Computadores');
 INSERT INTO tb_course(name) VALUES ('Ciência de Dados');
 
 INSERT INTO tb_student(course_id, person_id, year_of_study) VALUES (1, 1, 4);
-INSERT INTO tb_student(course_id, person_id, year_of_study) VALUES (2, 2, 3);
-INSERT INTO tb_student(course_id, person_id, year_of_study) VALUES (3, 3, 2);
+INSERT INTO tb_student(course_id, person_id, year_of_study) VALUES (2, 4, 3);
+INSERT INTO tb_student(course_id, person_id, year_of_study) VALUES (3, 5, 2);
 

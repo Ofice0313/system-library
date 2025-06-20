@@ -1,6 +1,7 @@
 package com.caleb.library.services;
 
 import com.caleb.library.dto.CourseDTO;
+import com.caleb.library.dto.CourseWithStudentsDTO;
 import com.caleb.library.entities.Course;
 import com.caleb.library.repositories.CourseRepository;
 import com.caleb.library.services.exceptions.DatabaseException;
@@ -22,8 +23,14 @@ public class CourseService {
 
     @Transactional(readOnly = true)
     public CourseDTO findById(Integer id){
-        Course Course = courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found!"));
-        return new CourseDTO(Course);
+        Course course = courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found!"));
+        return new CourseDTO(course);
+    }
+
+    @Transactional(readOnly = true)
+    public CourseWithStudentsDTO findByIdWithStudents(Integer id){
+        Course course = courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found!"));
+        return new CourseWithStudentsDTO(course);
     }
 
     @Transactional(readOnly = true)
