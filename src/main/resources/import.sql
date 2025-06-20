@@ -30,10 +30,10 @@ INSERT INTO tb_person(name, phone, email) VALUES ('Carlos Domingos', '8732154796
 INSERT INTO tb_person(name, phone, email) VALUES ('Luísa Nhantumbo', '8712547890', 'luisa.nhantumbo@example.com');
 INSERT INTO tb_person(name, phone, email) VALUES ('Renato Muiambo', '8712547890', 'renatomuiambo@example.com');
 
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2025-06-10T08:10:53Z', TIMESTAMP WITH TIME ZONE '2025-06-17T10:30:00Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:00:53Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:15:53Z', 'Inadiplete');
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations) VALUES (2, 2, TIMESTAMP WITH TIME ZONE '2025-06-05T09:15:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T09:45:00Z', NULL, 'Entregue a tempo');
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations) VALUES (3, 3, TIMESTAMP WITH TIME ZONE '2025-06-01T14:20:00Z', TIMESTAMP WITH TIME ZONE '2025-06-08T14:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T08:00:00Z', NULL, 'Devolvido com 1 dia de atraso');
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations) VALUES (1, 4, TIMESTAMP WITH TIME ZONE '2025-06-02T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T10:00:00Z', NULL, NULL, 'Em atraso');
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2025-06-10T08:10:53Z', TIMESTAMP WITH TIME ZONE '2025-06-17T10:30:00Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:00:53Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:15:53Z', 'Inadiplete', 1);
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (2, 2, TIMESTAMP WITH TIME ZONE '2025-06-05T09:15:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T09:45:00Z', NULL, 'Entregue a tempo', 2);
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (3, 3, TIMESTAMP WITH TIME ZONE '2025-06-01T14:20:00Z', TIMESTAMP WITH TIME ZONE '2025-06-08T14:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T08:00:00Z', NULL, 'Devolvido com 1 dia de atraso', 1);
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (1, 4, TIMESTAMP WITH TIME ZONE '2025-06-02T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T10:00:00Z', NULL, NULL, 'Em atraso', 1);
 
 INSERT INTO tb_department(name) VALUES ('TICs');
 INSERT INTO tb_department(name) VALUES ('Administração');

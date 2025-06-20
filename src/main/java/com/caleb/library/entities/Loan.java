@@ -1,5 +1,6 @@
 package com.caleb.library.entities;
 
+import com.caleb.library.entities.enuns.LoanStatus;
 import com.caleb.library.entities.pk.LoanPK;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -26,9 +27,11 @@ public class Loan {
     private Instant renew;
     private String observations;
 
+    private LoanStatus status;
+
     public Loan(){}
 
-    public Loan(Person person, Book book, Instant dateLoan, Instant returnDate, Instant dateReturned, Instant renew, String observations) {
+    public Loan(Person person, Book book, Instant dateLoan, Instant returnDate, Instant dateReturned, Instant renew, String observations, LoanStatus status) {
         id.setPerson(person);
         id.setBook(book);
         this.dateLoan = dateLoan;
@@ -36,6 +39,7 @@ public class Loan {
         this.dateReturned = dateReturned;
         this.renew = renew;
         this.observations = observations;
+        this.status = status;
     }
 
     public Person getPerson(){
@@ -92,6 +96,14 @@ public class Loan {
 
     public void setObservations(String observations) {
         this.observations = observations;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LoanStatus status) {
+        this.status = status;
     }
 
     @Override
