@@ -3,10 +3,10 @@ INSERT INTO tb_publisher(name, contact, site) VALUES ('Editora Saraiva', '+55113
 INSERT INTO tb_publisher(name, contact, site) VALUES ('Pearson Education', '+441632960960', 'www.pearson.com');
 INSERT INTO tb_publisher(name, contact, site) VALUES ('Campus Elsevier', '+551133224455', 'www.elsevier.com.br');
 
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Programming', '2134587564', '11111', 'English', 'wwww', 'OOP', 'EUA', '2016');
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Java para Iniciantes', '9788534605080', '005.13', 'Portuguese', 'Introdução ao Java', 'Programação', 'Brasil', '2020');
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Estruturas de Dados', '9780132576277', '005.73', 'English', 'Fundamentos de estruturas de dados', 'Algoritmos', 'EUA', '2018');
-INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition) VALUES ('Redes de Computadores', '9788582602961', '004.6', 'Portuguese', 'Conceitos de redes', 'Redes', 'Brasil', '2019');
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, status) VALUES ('Programming', '2134587564', '11111', 'English', 'wwww', 'OOP', 'EUA', '2016', 0);
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, status) VALUES ('Java para Iniciantes', '9788534605080', '005.13', 'Portuguese', 'Introdução ao Java', 'Programação', 'Brasil', '2020', 1);
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, status) VALUES ('Estruturas de Dados', '9780132576277', '005.73', 'English', 'Fundamentos de estruturas de dados', 'Algoritmos', 'EUA', '2018', 3);
+INSERT INTO tb_book(title, ISBN, CDU, language_, caption, matter, country_published, year_of_edition, status) VALUES ('Redes de Computadores', '9788582602961', '004.6', 'Portuguese', 'Conceitos de redes', 'Redes', 'Brasil', '2019', 2);
 
 INSERT INTO tb_author(name, nationality, date_of_birth) VALUES ('Paul Deitel', 'American', TIMESTAMP WITH TIME ZONE '2025-06-10T00:55:53Z');
 INSERT INTO tb_author(name, nationality, date_of_birth) VALUES ('Harvey Deitel', 'American', TIMESTAMP WITH TIME ZONE '1960-04-01T00:00:00Z');
@@ -30,10 +30,10 @@ INSERT INTO tb_person(name, phone, email) VALUES ('Carlos Domingos', '8732154796
 INSERT INTO tb_person(name, phone, email) VALUES ('Luísa Nhantumbo', '8712547890', 'luisa.nhantumbo@example.com');
 INSERT INTO tb_person(name, phone, email) VALUES ('Renato Muiambo', '8712547890', 'renatomuiambo@example.com');
 
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2025-06-10T08:10:53Z', TIMESTAMP WITH TIME ZONE '2025-06-17T10:30:00Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:00:53Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:15:53Z', 'Inadiplete', 1);
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (2, 2, TIMESTAMP WITH TIME ZONE '2025-06-05T09:15:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T09:45:00Z', NULL, 'Entregue a tempo', 2);
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2025-06-10T08:10:53Z', TIMESTAMP WITH TIME ZONE '2025-06-17T10:30:00Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:00:53Z', TIMESTAMP WITH TIME ZONE '2025-06-23T09:15:53Z', 'Inadiplete', 0);
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (2, 2, TIMESTAMP WITH TIME ZONE '2025-06-05T09:15:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-12T09:45:00Z', NULL, 'Entregue a tempo', 1);
 INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (3, 3, TIMESTAMP WITH TIME ZONE '2025-06-01T14:20:00Z', TIMESTAMP WITH TIME ZONE '2025-06-08T14:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T08:00:00Z', NULL, 'Devolvido com 1 dia de atraso', 1);
-INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (1, 4, TIMESTAMP WITH TIME ZONE '2025-06-02T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T10:00:00Z', NULL, NULL, 'Em atraso', 1);
+INSERT INTO tb_loan(person_id, book_id, date_loan, return_date, date_returned, renew, observations, status) VALUES (1, 4, TIMESTAMP WITH TIME ZONE '2025-06-02T10:00:00Z', TIMESTAMP WITH TIME ZONE '2025-06-09T10:00:00Z', NULL, NULL, 'Em atraso', 0);
 
 INSERT INTO tb_department(name) VALUES ('TICs');
 INSERT INTO tb_department(name) VALUES ('Administração');

@@ -1,5 +1,6 @@
 package com.caleb.library.entities;
 
+import com.caleb.library.entities.enuns.BookStatus;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -19,6 +20,7 @@ public class Book {
     private String matter;
     private String countryPublished;
     private int yearOfEdition;
+    private BookStatus status;
 
     @OneToMany(mappedBy = "book")
     private List<Category> categories = new ArrayList<>();
@@ -40,7 +42,7 @@ public class Book {
 
     }
 
-    public Book(Integer id, String title, String isbn, String cdu, String language_, String caption, String matter, String countryPublished, int yearOfEdition) {
+    public Book(Integer id, String title, String isbn, String cdu, String language_, String caption, String matter, String countryPublished, int yearOfEdition, BookStatus status) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
@@ -50,6 +52,7 @@ public class Book {
         this.matter = matter;
         this.countryPublished = countryPublished;
         this.yearOfEdition = yearOfEdition;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -144,6 +147,14 @@ public class Book {
         return loans;
     }
 
+    public BookStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BookStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -154,5 +165,9 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public boolean isAvailable(){
+        return this.status == BookStatus.AVAILABLE;
     }
 }
